@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package pool_price_changes.v1;
+
+message Slot0Change {
+  string transaction_hash = 1;
+  string sqrt_price_x96 = 2;
+  int32 tick = 3;
+  /// for debug
+  string storage_change_json = 4;
+  string storage_change_decoded_json = 5;
+}
+
+message PoolPriceChagnes {
+  string block_hash = 1;
+  uint64 block_number = 2;
+  google.protobuf.Timestamp block_timestamp = 3;
+  uint64 num_transactions = 4;
+  repeated Slot0Change slot0_changes = 5;
+  // Extra log string (in json) explaining the
+  // status of the block
+  string extra = 6;
+}

@@ -1,0 +1,43 @@
+[package]
+name = "pool_price"
+version = "0.0.1"
+edition = "2021"
+
+[lib]
+name = "substreams"
+crate-type = ["cdylib"]
+
+[dependencies]
+ethabi = "17"
+hex-literal = "0.3.4"
+# num-bigint = "0.4"
+num-bigint = { version = "0.4", features = ["serde"] }
+num-traits = "0.2.15"
+prost = "0.13.3"
+prost-types = "0.13.3"
+substreams = "0.6.0"
+substreams-ethereum = "0.10.0"
+substreams-database-change = "1"
+substreams-entity-change = "1"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+base64 = "0.21"
+hex = "0.4"
+# ethers is not WASM compatible, use tiny-keccak instead for keccak
+# ethers = "2.0"  # Use the latest version from crates.io
+tiny-keccak = "2.0"
+
+# Required so that ethabi > ethereum-types build correctly under wasm32-unknown-unknown
+[target.wasm32-unknown-unknown.dependencies]
+getrandom = { version = "0.2", features = ["custom"] }
+
+[build-dependencies]
+prost-build = "0.11"
+anyhow = "1"
+substreams-ethereum = "0.10.0"
+#regex = "1.8"
+
+[profile.release]
+lto = true
+opt-level = 's'
+strip = "debuginfo"
