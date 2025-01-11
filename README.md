@@ -14,7 +14,6 @@ substreams registry publish       # Publish your Substreams to substreams.dev
 
 ## Modules
 
-### `map_my_data`
+### `map_pool_price_changes`
 
-This module extracts small bits of block data, and does simple computations over the 
-number of **transactions** in each block.
+This module extract pool price change of a uniswapv3 pool
